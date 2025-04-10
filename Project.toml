@@ -1,7 +1,7 @@
 name = "GregoryIntegrators"
 uuid = "49db6aea-5aa9-4eed-8ff3-7f43b40eac63"
 authors = ["Lukas Grunwald <lukas.grunwald@rwth-aachen.de>"]
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
 LoopVectorization = "bdcacae8-1622-11e9-2a5c-532679323890"

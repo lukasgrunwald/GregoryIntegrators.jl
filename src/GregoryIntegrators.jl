@@ -18,8 +18,8 @@ include("polynomials.jl")
 
 Calculate ``∫ₐᵇ y(x)`` with `y[1]=a, y[end]=b` using Gregory integration.
 """
-function gint(y::AbstractVector{T}, δt::Real, q::Integer,
-              weights::GregoryWeights)::T where {T<:Number}
+function gint(y::AbstractVector{T}, δt::Real, q::Integer = 7,
+              weights::GregoryWeights = GregoryWeights(q))::T where {T<:Number}
 
     l = length(y)
     (l < q+1) && (return poly_integrate(y, δt, l-1, weights))
@@ -35,7 +35,7 @@ function gint(y::AbstractVector{T}, δt::Real, q::Integer,
 end
 
 function gint(y1::AbstractVector{T}, y2::AbstractVector{T}, δt::Real,
-              q::Integer, weights::GregoryWeights)::T where {T<:Number}
+              q::Integer = 7, weights::GregoryWeights = GregoryWeights(q))::T where {T<:Number}
     l = length(y1)
     (l < q + 1) && (return poly_integrate(y1, y2, δt, l - 1, weights))
 
