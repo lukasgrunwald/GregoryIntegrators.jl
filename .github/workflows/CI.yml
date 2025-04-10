@@ -2,7 +2,7 @@ name: CI
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
   workflow_dispatch:
 concurrency:
@@ -31,7 +31,11 @@ jobs:
           version: ${{ matrix.version }}
           arch: ${{ matrix.arch }}
       - uses: julia-actions/cache@v1
-      - uses: julia-actions/julia-buildpkg@v1
+      - uses: lukasgrunwald/julia-buildpkg@localregistry
+        with:
+          localregistry: | # Collect URL's into newline seperated string
+            https://github.com/lukasgrunwald/CondMatRegistry.git
+          git_cli: false
       - uses: julia-actions/julia-runtest@v1
   register:
     needs: test # Only run this once test is completed
